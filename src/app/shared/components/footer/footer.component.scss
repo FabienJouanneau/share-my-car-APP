@@ -1,0 +1,19 @@
+footer{
+  margin-top: 10em;
+}
+hr{
+  border-color: var(--primary-color);
+}
+
+.container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+img{
+  width: 10%;
+  cursor: pointer;
+  &:active{
+    border: none;
+  }
+}
