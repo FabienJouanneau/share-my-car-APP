@@ -1,0 +1,25 @@
+<SMC-nav-bar></SMC-nav-bar>
+<h1 id="title">Bienvenue {{user.firstName}} {{user.lastName}}</h1>
+
+<h2>Mes réservations</h2>
+<div class="card" *ngFor="let booking of user.bookings">
+  <img src="" alt="">
+  <div class="cardSubcontainer">
+    <!-- <h3>{{advert.carBrand}} {{advert.carModel}} {{advert.carRegistrationDate | date: "yyyy"}}</h3> -->
+    <div>Du {{booking.startingDate | date: 'shortDate':'fr'}} au {{booking.endingDate | date: 'shortDate':'fr'}}</div>
+    <h1>{{booking.amount}} €</h1>
+  </div>
+</div>
+<h2>Mes annonces</h2>
+<div class="card" *ngFor="let advert of user.adverts" routerLink="/profile/{{userId}}/my-advert/{{advert.id}}">
+  <img src="{{advert.pictures[0].url}}" alt="">
+  <div class="cardSubcontainer">
+    <h3>{{advert.carBrand}} {{advert.carModel}} {{advert.carRegistrationDate | date: "yyyy"}}</h3>
+    <div>{{advert.carKilometers}} kilomètres</div>
+    <h1>{{advert.carPricePerDay}} € / jour</h1>
+  </div>
+</div>
+<div class="buttonContainer">
+  <button routerLink="/profile/{{userId}}/new-advert">Nouvelle annonce</button>
+</div>
+<SMC-footer></SMC-footer>
