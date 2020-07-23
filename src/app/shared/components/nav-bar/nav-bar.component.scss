@@ -1,0 +1,22 @@
+nav{
+  margin-bottom: 5em;
+}
+.container{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+img{
+  width: 10%;
+  cursor: pointer;
+  &:active{
+    border: none;
+  }
+}
+.icon{
+  width: 4em;
+  margin-right: 1em;
+}
+hr{
+  border-color: var(--primary-color);
+}
