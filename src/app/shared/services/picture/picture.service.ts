@@ -8,7 +8,7 @@ import { Picture } from '../../classes/picture';
   providedIn: 'root'
 })
 export class PictureService {
-  private static PICTURE_URL = environment.baseUrl + 'users';
+  private static PICTURE_URL = environment.baseUrl + 'pictures';
 
   constructor(
     private http: HttpClient,
@@ -21,9 +21,9 @@ export class PictureService {
     return this.http.post<Picture>(`${PictureService.PICTURE_URL}`, picture);
   }
   putPictureByid(picture: Picture): Observable < Picture > {
-    return this.http.put<Picture>(`${PictureService.PICTURE_URL}/${picture.id}`, Picture);
+    return this.http.put<Picture>(`${PictureService.PICTURE_URL}/${picture.pictureId}`, Picture);
   }
   deletePictureByid(picture: Picture): Observable < void > {
-    return this.http.delete<void>(`${PictureService.PICTURE_URL}/${picture.id}`);
+    return this.http.delete<void>(`${PictureService.PICTURE_URL}/${picture.pictureId}`);
   }
 }
