@@ -1,0 +1,78 @@
+<SMC-nav-bar></SMC-nav-bar>
+<img routerLink="/profile/{{userId}}" src="/assets/img/back.svg" alt="retour">
+<h1 id="title" *ngIf="user">
+  Bienvenue {{user.firstName}} {{user.lastName}}
+</h1>
+<form *ngIf="advertModel" (ngSubmit)="advertForm.valid && onSubmit()" #advertForm="ngForm">
+  <h2>Informations générales</h2>
+  <div class="formSubContainer">
+    <label for="carBrand">Marque<span>*</span></label>
+    <input type="text" name="carBrand" [(ngModel)]="advertModel.carBrand" #carBrand="ngModel" required>
+    <div *ngIf="advertForm.submitted && carBrand.errors?.required" class="errorMessage">Une marque est requise</div>
+  </div>
+  <div class="formSubContainer">
+    <label for="carModel">Modèle<span>*</span></label>
+    <input type="text" name="carModel" [(ngModel)]="advertModel.carModel" #carModel="ngModel" required>
+    <div *ngIf="advertForm.submitted && carBrand.errors?.required" class="errorMessage">Un modèle est requis</div>
+  </div>
+  <div class="formSubContainer">
+    <label for="carRegistrationDate">Date d'immatriculation<span>*</span></label>
+    <input type="date" name="carRegistrationDate" [ngModel]="advertModel.carRegistrationDate | date: 'yyyy-MM-dd'" (ngModelChange)="advertModel.carRegistrationDate" #carRegistrationDate="ngModel" required>
+    <div *ngIf="advertForm.submitted && carRegistrationDate.errors?.required" class="errorMessage">Une date d'immatriculation est requise</div>
+  </div>
+  <div class="formSubContainer">
+    <label for="carKilometers">Kilométrage<span>*</span></label>
+    <input type="text" name="carKilometers" [(ngModel)]="advertModel.carKilometers" #carKilometers="ngModel">
+  </div>
+  <div class="formSubContainer">
+    <label for="carEnergy">Energie moteur<span>*</span></label>
+    <select name="carEnergy" [(ngModel)]="advertModel.carEnergy" #carEnergy="ngModel">
+      <option value="Essence">Essence</option>
+      <option value="Gasoil">Gasoil</option>
+      <option value="Electrique">Electrique</option>
+      <option value="GPL">GPL</option>
+    </select>
+    <div *ngIf="advertForm.submitted && carEnergy.errors?.required" class="errorMessage">Une date d'immatriculation est requise</div>
+  </div>
+  <div class="formSubContainer">
+    <label for="carMotor">Type de motorisation<span>*</span></label>
+    <select name="carEnergy" [(ngModel)]="advertModel.carMotor" #carMotor="ngModel">
+      <option value="Automatique">Automatique</option>
+      <option value="Manuel">Manuel</option>
+    </select>
+    <div *ngIf="advertForm.submitted && carMotor.errors?.required" class="errorMessage">Une date d'immatriculation est requise</div>
+  </div>
+  <div class="formSubContainer">
+    <label for="carPricePerDay">Prix / jour<span>*</span></label>
+    <input type="text" name="carPricePerDay" [(ngModel)]="advertModel.carPricePerDay" #carPricePerDay="ngModel">
+  </div>
+  <h2>Photos</h2>
+  <div class="formSubContainer" *ngFor="let picture of advertModel.pictures; let i = index">
+    <label for="pictureUrl{{i+1}}">Photo {{i+1}}<span>*</span></label>
+    <div class="buttonContainer">
+      <input type="url" name="pictureUrl{{i+1}}" [(ngModel)]="picture.url" #pictureUrl="ngModel" required>
+      <button class="addElement cancelForm" (click)="deletePicture(picture)">-</button>
+    </div>
+    <div *ngIf="advertForm.submitted && pictureUrl.errors?.required" class="errorMessage">Une photo est requise</div>
+  </div>
+  <div *ngIf="displayNewPictureButton" class="buttonContainer">
+    <button class="addElement" (click)="addPicture()">+</button>
+  </div>
+  <h2>Options</h2>
+  <div class="formSubContainer" *ngFor="let option of advertModel.carOptions; let i = index">
+    <label for="optionName{{i+1}}">Option {{i+1}}<span>*</span></label>
+    <div class="buttonContainer">
+      <input type="url" name="optionName{{i+1}}" [(ngModel)]="option.name" #optionName="ngModel" required>
+      <button class="addElement cancelForm" (click)="deleteOption(option)">-</button>
+    </div>
+    <div *ngIf="advertForm.submitted && optionName.errors?.required" class="errorMessage">Une option est requise</div>
+  </div>
+  <div class="buttonContainer">
+    <button class="addElement"(click)="addOption()">+</button>
+  </div>
+  <div class="buttonContainer">
+    <button type="submit">Valider</button>
+    <button class="cancelForm" type="reset">Annuler</button>
+  </div>
+</form>
+<SMC-footer></SMC-footer>
