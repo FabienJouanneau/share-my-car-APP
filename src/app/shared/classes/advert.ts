@@ -1,6 +1,6 @@
 import { User } from './user';
 import { Picture } from './picture';
-import { Option } from './options';
+import { Option } from './option';
 
 export class Advert{
   public id?: number;

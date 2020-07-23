@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Option } from '../../classes/options';
+import { Option } from '../../classes/option';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';

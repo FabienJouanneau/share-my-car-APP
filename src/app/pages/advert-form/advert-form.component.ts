@@ -7,7 +7,7 @@ import { Advert } from '../../shared/classes/advert';
 import { Picture } from '../../shared/classes/picture';
 import { OptionService } from '../../shared/services/option/option.service';
 import { PictureService } from '../../shared/services/picture/picture.service';
-import { Option } from '../../shared/classes/options';
+import { Option } from '../../shared/classes/option';
 
 @Component({
   selector: 'SMC-advert-form',
