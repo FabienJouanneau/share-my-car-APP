@@ -1,0 +1,16 @@
+<SMC-nav-bar></SMC-nav-bar>
+<form>
+  <label for="advertSearch"><h1>Recherchez votre véhicule</h1></label>
+  <input type="search" name="advertSearch" id="advertSearch" placeholder="Renault Captur 2005" [ngModel]="filterSearch" (ngModelChange)="filterUsers($event)">
+</form>
+
+<div class="card" routerLink="/adverts/{{advert.id}}" *ngFor="let advert of filteredAdverts">
+  <img src="{{advert.pictures[0].url}}" alt="">
+  <div class="cardSubcontainer">
+    <h3>{{advert.carBrand}} {{advert.carModel}} {{advert.carRegistrationDate | date: "yyyy"}}</h3>
+    <div>{{advert.carKilometers}} kilomètres</div>
+    <h1>{{advert.carPricePerDay}} € / jour</h1>
+  </div>
+</div>
+<SMC-footer></SMC-footer>
+
