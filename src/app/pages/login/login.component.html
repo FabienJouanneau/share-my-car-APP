@@ -1,0 +1,21 @@
+<div class="container">
+  <img src="/assets/img/3b9862de-33d6-4311-b801-38bf8b6fc001_200x200.png" alt="logo">
+</div>
+
+<form (ngSubmit)="loginForm.valid && onSubmit()" #loginForm="ngForm">
+  <div class="formSubContainer">
+    <label for="email"><h2>Adresse email</h2></label>
+    <input type="email" name="email" [(ngModel)]="userModel.email" #email='ngModel' required>
+    <div class="errorMessage" *ngIf="loginForm.submitted && email.errors?.required">Un email est requis</div>
+  </div>
+  <div class="formSubContainer">
+    <label for="password"><h2>Mot de passe</h2></label>
+    <input type="password" name="password" [(ngModel)]="userModel.password" #password='ngModel' required minlength="8">
+    <div class="errorMessage" *ngIf="loginForm.submitted && password.errors?.required">Un mot de passe est requis</div>
+    <div class="errorMessage" *ngIf="loginForm.submitted && password.errors?.minlength">Le mot de passe doit comporter 8 charactères</div>
+  </div>
+  <div class="buttonContainer">
+    <button type="submit">Valider</button>
+    <button class="cancelForm" type="reset" (click)="resetForm()">Annuler</button>
+  </div>
+</form>
