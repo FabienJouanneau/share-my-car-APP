@@ -1,0 +1,86 @@
+h1{
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 2em;
+}
+h2{
+  color: var(--secondary-color);
+  margin-top: 2em;
+}
+.buttonContainer{
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+button {
+  margin: 3em;
+  width: 15em;
+  height: 3em;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: larger;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover{
+    background-color: white;
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+  }
+}
+.cancelForm{
+  color: red;
+  background-color: white;
+  border: 1px solid red;
+  &:hover{
+    background-color: red;
+    color: white;
+    border: 1px solid white;
+  }
+}
+form{
+  width: 65%;
+  margin: auto;
+}
+.formContainer{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.formSubContainer{
+  width: 23%;
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.oneContainer{
+  justify-content: center;
+}
+.one{
+  width: 80%;
+}
+.two{
+  width: 45%;
+}
+label, input{
+  width: 80%;
+}
+label{
+  color: grey;
+}
+input{
+  padding: 1em 1em;
+  font-size: larger;
+  border: none;
+  border-bottom: 1px solid var(--secondary-color);
+}
+span{
+  color: red;
+}
+.errorMessage{
+  color: red;
+  font-size: smaller;
+}

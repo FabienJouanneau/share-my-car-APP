@@ -1,0 +1,108 @@
+<form (ngSubmit)="registrationForm.valid && onSubmit()" #registrationForm="ngForm">
+  <h1>Je m'enregistre</h1>
+  <div class="formContainer">
+    <div class="formSubContainer">
+      <label for="firstName">Prénom<span>*</span></label>
+      <input type="text" name="firstName" [(ngModel)]='userModel.firstName' #firstName='ngModel' required>
+      <div class="errorMessage" *ngIf="registrationForm.submitted && firstName.errors?.required">Un prénom est requis</div>
+    </div>
+    <div class="formSubContainer">
+      <label for="lastName">NOM<span>*</span></label>
+      <input type="text" name="lastName" [(ngModel)]='userModel.lastName' #lastName='ngModel' required>
+      <div class="errorMessage" *ngIf="registrationForm.submitted && lastName.errors?.required">Un nom est requis</div>
+    </div>
+    <div class="formSubContainer">
+      <label for="phoneNumber">Téléphone<span>*</span></label>
+      <input type="tel" name="phoneNumber" [(ngModel)]='userModel.phoneNumber' #phoneNumber='ngModel' required>
+      <div class="errorMessage" *ngIf="registrationForm.submitted && phoneNumber.errors?.required">Un numéro est requis</div>
+    </div>
+    <div class="formSubContainer">
+      <label for="birthDate">Date de naissance<span>*</span></label>
+      <input type="date" name="birthDate" [ngModel]='userModel.birthDate' (ngModelChange)='userModel.birthDate' #birthDate='ngModel' required>
+      <div class="errorMessage" *ngIf="registrationForm.submitted && birthDate.errors?.required">Une date de naissance est requise</div>
+    </div>
+  </div>
+  <div class="formContainer">
+    <div class="formSubContainer two">
+      <label for="email">Email<span>*</span></label>
+      <input type="email" name="email" [(ngModel)]='userModel.email' #email='ngModel' required>
+      <div class="errorMessage" *ngIf="registrationForm.submitted && email.errors?.required">Un email est requis</div>
+    </div>
+    <div class="formSubContainer two">
+      <label for="password">Mot de passe<span>*</span></label>
+      <input type="password" name="password" [(ngModel)]='userModel.password' #password='ngModel' required minlength="8">
+      <div class="errorMessage" *ngIf="registrationForm.submitted && password.errors?.required">Un mot de passe est requis</div>
+      <div class="errorMessage" *ngIf="registrationForm.submitted && password.errors?.minlength">Le mot de passe doit comporter 8 charactères</div>
+    </div>
+  </div>
+  <h2>Adresse</h2>
+  <div class="formContainer oneContainer">
+    <div class="formSubContainer one">
+      <label for="addressStreet">Rue<span>*</span></label>
+      <input type="text" name="addressStreet" [(ngModel)]='userModel.addressStreet' #addressStreet='ngModel' required>
+      <div class="errorMessage" *ngIf="registrationForm.submitted && password.errors?.required">Une rue est requise</div>
+    </div>
+  </div>
+  <div class="formContainer">
+    <div class="formSubContainer">
+      <label for="addressZipCode">Code postal<span>*</span></label>
+      <input type="text" name="addressZipCode" [(ngModel)]='userModel.addressZipCode' #addressZipCode='ngModel' required>
+      <div class="errorMessage" *ngIf="registrationForm.submitted && addressZipCode.errors?.required">Un code postal est requis</div>
+    </div>
+    <div class="formSubContainer">
+      <label for="addressCityName">Ville<span>*</span></label>
+      <input type="text" name="addressCityName" [(ngModel)]='userModel.addressCityName' #addressCityName='ngModel' required>
+      <div class="errorMessage" *ngIf="registrationForm.submitted && addressCityName.errors?.required">Une ville est requise</div>
+    </div>
+    <div class="formSubContainer">
+      <label for="addressCountryName">Pays<span>*</span></label>
+      <input type="text" name="addressCountryName" [(ngModel)]='userModel.addressCountryName' #addressCountryName='ngModel' required>
+      <div class="errorMessage" *ngIf="registrationForm.submitted && addressCountryName.errors?.required">Un pays est requis</div>
+    </div>
+  </div>
+  <h2>Informations bancaires</h2>
+  <div class="formContainer">
+    <div class="formSubContainer">
+      <label for="ribOwnerFullName">Titulaire compte<span>*</span></label>
+      <input type="text" name="ribOwnerFullName" [(ngModel)]='userModel.ribOwnerFullName' #ribOwnerFullName='ngModel' required>
+      <div class="errorMessage" *ngIf="registrationForm.submitted && ribOwnerFullName.errors?.required">Le titulaire du compte est requis</div>
+    </div>
+    <div class="formSubContainer">
+      <label for="ribBankName">Nom banque<span>*</span></label>
+      <input type="text" name="ribBankName" [(ngModel)]='userModel.ribBankName' #ribBankName='ngModel' required>
+      <div class="errorMessage" *ngIf="registrationForm.submitted && ribBankName.errors?.required">Un nom de banque est requis</div>
+    </div>
+    <div class="formSubContainer">
+      <label for="ribIbanNumber">Iban<span>*</span></label>
+      <input type="text" name="ribIbanNumber" [(ngModel)]='userModel.ribIbanNumber' #ribIbanNumber='ngModel' required>
+      <div class="errorMessage" *ngIf="registrationForm.submitted && ribIbanNumber.errors?.required">Un IBAN est requis</div>
+    </div>
+    <div class="formSubContainer">
+      <label for="ribBicCode">Code BIC<span>*</span></label>
+      <input type="text" name="ribBicCode" [(ngModel)]='userModel.ribBicCode' #ribBicCode='ngModel' required>
+      <div class="errorMessage" *ngIf="registrationForm.submitted && ribBicCode.errors?.required">Un code BIC est requis</div>
+    </div>
+  </div>
+  <h2>Permis de conduire</h2>
+  <div class="formContainer">
+    <div class="formSubContainer">
+      <label for="drivingLicenceOwner">Titulaire permis<span>*</span></label>
+      <input type="text" name="drivingLicenceOwner" [(ngModel)]='userModel.drivingLicenceOwner' #drivingLicenceOwner='ngModel' required>
+      <div class="errorMessage" *ngIf="registrationForm.submitted && drivingLicenceOwner.errors?.required">Le titulaire du permis est requis</div>
+    </div>
+    <div class="formSubContainer">
+      <label for="drivingLicenceNumber">N° de permis<span>*</span></label>
+      <input type="text" name="drivingLicenceNumber" [(ngModel)]='userModel.drivingLicenceNumber' #drivingLicenceNumber='ngModel' required>
+      <div class="errorMessage" *ngIf="registrationForm.submitted && drivingLicenceNumber.errors?.required">Un numéro de permis est requis</div>
+    </div>
+    <div class="formSubContainer">
+      <label for="drivingLicenceDate">Date d'obtention<span>*</span></label>
+      <input type="text" name="drivingLicenceDate" [ngModel]='userModel.drivingLicenceDate' (ngModelChange)='userModel.drivingLicenceDate' #drivingLicenceDate='ngModel' required>
+      <div class="errorMessage" *ngIf="registrationForm.submitted && drivingLicenceDate.errors?.required">Une date d'obtention est requise</div>
+    </div>
+  </div>
+  <div class="buttonContainer">
+    <button type="submit">Valider</button>
+    <button class="cancelForm" type="reset" (click)="resetForm()">Annuler</button>
+  </div>
+</form>
