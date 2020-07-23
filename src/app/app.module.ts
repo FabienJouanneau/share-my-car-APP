@@ -18,6 +18,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { AdvertFormComponent } from './pages/advert-form/advert-form.component';
 import { AdvertDetailsComponent } from './pages/advert-details/advert-details.component';
+import { AuthInterceptor } from './shared/core/interceptors/auth.interceptor';
+import { BookingComponent } from './pages/booking/booking.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { AdvertDetailsComponent } from './pages/advert-details/advert-details.co
     ProfileComponent,
     AdvertFormComponent,
     AdvertDetailsComponent,
+    BookingComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,7 @@ import { AdvertDetailsComponent } from './pages/advert-details/advert-details.co
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR'},
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
