@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../shared/services/auth/auth.service';
 
 @Component({
   selector: 'SMC-login',
@@ -9,16 +10,15 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   @Output() hideForm = new EventEmitter();
   userModel = {email: '', password: ''};
-  userId = 1;
 
   constructor(
-    private router: Router,
+    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
   }
   onSubmit(){
-    this.router.navigateByUrl(`/profile/${this.userId}`);
+    this.authService.login(this.userModel);
   }
   resetForm(){
     this.userModel = {email: '', password: ''};
