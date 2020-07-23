@@ -1,16 +1,16 @@
 import { Advert } from './advert';
 
 export class Picture{
-  public id?: number;
+  public pictureId?: number;
   public url: string;
   public advert?: Advert | {id?: number};
 
   constructor(
     url: string,
-    id?: number,
+    pictureId?: number,
     advert?: Advert | {id?: number},
   ){
-    this.id = id;
+    this.pictureId = pictureId;
     this.url = url;
     this.advert = advert;
   }

@@ -1,16 +1,16 @@
 import { Advert } from './advert';
 
 export class Option{
-  public id?: number;
-  public name: string;
+  public carOptionId?: number;
+  public name?: string;
   public adverts?: Advert[] | {id: number}[];
 
   constructor(
-    name: string,
+    carOptionId?: number,
+    name?: string,
     adverts?: Advert[] | {id: number}[],
-    id?: number,
   ){
-    this.id = id;
+    this.carOptionId = carOptionId;
     this.name = name;
     this.adverts = adverts;
   }

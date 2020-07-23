@@ -3,7 +3,7 @@ import { Picture } from './picture';
 import { Option } from './option';
 
 export class Advert{
-  public id?: number;
+  public advertId?: number;
   public name: string;
   public carBrand: string;
   public carModel: string;
@@ -14,7 +14,7 @@ export class Advert{
   public carMotor: 'Automatique' | 'Manuel';
   public pictures?: Picture[];
   public carOptions?: Option[];
-  public user?: User | {id?: number};
+  public user?: User | {userId?: number};
 
   constructor(
     name: string,
@@ -27,10 +27,10 @@ export class Advert{
     carMotor: 'Automatique' | 'Manuel',
     pictures?: Picture[],
     carOptions?: Option[],
-    user?: User | {id?: number},
-    id?: number,
+    user?: User | {userId?: number},
+    advertId?: number,
   ){
-    this.id = id;
+    this.advertId = advertId;
     this.name = name;
     this.carBrand = carBrand;
     this.carModel = carModel;

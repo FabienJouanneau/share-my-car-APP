@@ -2,7 +2,7 @@ import { Advert } from './advert';
 import { Booking } from './booking';
 
 export class User{
-  public id?: number;
+  public userId?: number;
   public firstName: string;
   public lastName: string;
   public birthDate: Date;
@@ -45,9 +45,9 @@ export class User{
     adverts: Advert[],
     bookings?: Booking[],
     role?: 'admin' | 'client',
-    id?: number,
+    userId?: number,
   ){
-    this.id = id;
+    this.userId = userId;
     this.firstName = firstName;
     this.lastName = lastName;
     this.birthDate = birthDate;

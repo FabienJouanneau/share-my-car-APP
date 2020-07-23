@@ -1,22 +1,25 @@
+import { User } from './user';
+import { Advert } from './advert';
+
 export class Booking{
-  public id?: number;
-  public userId: {id?: number};
-  public advertId: {id?: number};
+  public bookingId?: number;
+  public user?: User | {userId?: number};
+  public advert?: Advert | {advertId?: number};
   public startingDate: Date;
   public endingDate: Date;
   public amount: number;
 
   constructor(
-    userId: {id: number},
-    advertId: {id: number},
     startingDate: Date,
     endingDate: Date,
     amount: number,
-    id?: number,
+    user?: User | {userId?: number},
+    advert?: Advert | {advertId?: number},
+    bookingId?: number,
   ){
-    this.id = id;
-    this.userId = userId;
-    this.advertId = advertId;
+    this.bookingId = bookingId;
+    this.user = user;
+    this.advert = advert;
     this.startingDate = startingDate;
     this.endingDate = endingDate;
     this.amount = amount;
