@@ -6,6 +6,7 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { AdvertFormComponent } from './pages/advert-form/advert-form.component';
 import { AdvertDetailsComponent } from './pages/advert-details/advert-details.component';
+import { AuthGuard } from './shared/core/guards/auth.guard';
 
 
 const routes: Routes = [
@@ -13,10 +14,10 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'find-my-car', component: AdvertListComponent},
   {path: 'auth', component: AuthComponent},
-  {path: 'profile/:userId', component: ProfileComponent},
-  {path: 'adverts/:advertId', component: AdvertDetailsComponent},
-  {path: 'profile/:userId/my-advert/:advertId', component: AdvertFormComponent},
-  {path: 'profile/:userId/new-advert', component: AdvertFormComponent},
+  {path: 'adverts/:advertId', component: AdvertDetailsComponent, canActivate: [AuthGuard]},
+  {path: 'profile/:userId', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'profile/:userId/my-advert/:advertId', component: AdvertFormComponent, canActivate: [AuthGuard]},
+  {path: 'profile/:userId/new-advert', component: AdvertFormComponent, canActivate: [AuthGuard]},
   {path: '**', component: HomeComponent},
 ];
 
