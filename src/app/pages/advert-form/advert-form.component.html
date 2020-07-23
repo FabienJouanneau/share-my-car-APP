@@ -17,7 +17,7 @@
   </div>
   <div class="formSubContainer">
     <label for="carRegistrationDate">Date d'immatriculation<span>*</span></label>
-    <input type="date" name="carRegistrationDate" [ngModel]="advertModel.carRegistrationDate | date: 'yyyy-MM-dd'" (ngModelChange)="advertModel.carRegistrationDate" #carRegistrationDate="ngModel" required>
+    <input type="date" name="carRegistrationDate" [ngModel]="advertModel.carRegistrationDate | date: 'yyyy-MM-dd'" (ngModelChange)="advertModel.carRegistrationDate=$event" #carRegistrationDate="ngModel" required>
     <div *ngIf="advertForm.submitted && carRegistrationDate.errors?.required" class="errorMessage">Une date d'immatriculation est requise</div>
   </div>
   <div class="formSubContainer">
@@ -51,28 +51,31 @@
     <label for="pictureUrl{{i+1}}">Photo {{i+1}}<span>*</span></label>
     <div class="buttonContainer">
       <input type="url" name="pictureUrl{{i+1}}" [(ngModel)]="picture.url" #pictureUrl="ngModel" required>
-      <button class="addElement cancelForm" (click)="deletePicture(picture)">-</button>
+      <button class="addElement cancelForm" type="button" (click)="deletePicture(picture)">-</button>
     </div>
     <div *ngIf="advertForm.submitted && pictureUrl.errors?.required" class="errorMessage">Une photo est requise</div>
   </div>
   <div *ngIf="displayNewPictureButton" class="buttonContainer">
-    <button class="addElement" (click)="addPicture()">+</button>
+    <button class="addElement" type="button" (click)="addPicture()">+</button>
   </div>
   <h2>Options</h2>
   <div class="formSubContainer" *ngFor="let option of advertModel.carOptions; let i = index">
     <label for="optionName{{i+1}}">Option {{i+1}}<span>*</span></label>
     <div class="buttonContainer">
-      <input type="url" name="optionName{{i+1}}" [(ngModel)]="option.name" #optionName="ngModel" required>
-      <button class="addElement cancelForm" (click)="deleteOption(option)">-</button>
+      <select name="optionName{{i+1}}"[ngModel]="option.carOptionId" (ngModelChange)="option.carOptionId=+$event" #optionName="ngModel">
+        <option value="{{option.carOptionId}}" *ngFor="let option of optionList">{{option.name}}</option>
+      </select>
+      <!-- <input type="text" name="optionName{{i+1}}" [(ngModel)]="option.name" #optionName="ngModel" required> -->
+      <button class="addElement cancelForm" type="button" (click)="deleteOption(option)">-</button>
     </div>
     <div *ngIf="advertForm.submitted && optionName.errors?.required" class="errorMessage">Une option est requise</div>
   </div>
   <div class="buttonContainer">
-    <button class="addElement"(click)="addOption()">+</button>
+    <button class="addElement" type="button" (click)="addOption()">+</button>
   </div>
   <div class="buttonContainer">
     <button type="submit">Valider</button>
-    <button class="cancelForm" type="reset">Annuler</button>
+    <button class="cancelForm" type="button" (click)="initializeAdvert(advertId)">Annuler</button>
   </div>
 </form>
 <SMC-footer></SMC-footer>

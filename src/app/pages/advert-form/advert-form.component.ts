@@ -20,6 +20,7 @@ export class AdvertFormComponent implements OnInit {
   advertId: number;
   advertModel: Advert;
   displayNewPictureButton = true;
+  optionList: Option[];
 
   constructor(
     private router: Router,
@@ -34,6 +35,11 @@ export class AdvertFormComponent implements OnInit {
     this.route.paramMap.subscribe(paramMap => {
       this.userId = +paramMap.get('userId');
       this.advertId = +paramMap.get('advertId');
+      this.optionService.getAllOptions().subscribe(data => {
+        this.optionList = data;
+        console.log(this.optionList);
+
+      });
       this.initializeUser(this.userId);
       if (this.advertId){
         this.initializeAdvert(this.advertId);
@@ -42,19 +48,16 @@ export class AdvertFormComponent implements OnInit {
       }
     });
   }
-  initializeUser(id: number): User{
-    // this.userService.getUserById(id).subscribe(data => {
-    //   this.user = data;
-    // });
-    return this.user = this.userService.getUserById(id);
+  initializeUser(id: number){
+    this.userService.getUserById(id).subscribe(data => {
+      this.user = data;
+    });
   }
-  initializeAdvert(id: number): Advert{
-    // this.advertService.getAdvertById(id).subscribe(data => {
-    //   this.advert = data;
-    // });
-    this.advertModel = this.advertService.getAdvertByid(id);
-    this.toggleDisplayNewPictureButton();
-    return this.advertModel;
+  initializeAdvert(id: number){
+    this.advertService.getAdvertByid(id).subscribe((data) => {
+      this.advertModel = data;
+      this.toggleDisplayNewPictureButton();
+    });
   }
   resetAdvertModel(){
     this.advertModel = {
@@ -62,25 +65,31 @@ export class AdvertFormComponent implements OnInit {
       carModel: '',
       carKilometers: 0,
       carPricePerDay: 0,
-      carRegistrationDate: null,
+      carRegistrationDate: new Date(Date.now()),
       name: '',
       carEnergy: null,
       carMotor: null,
       pictures: [],
       carOptions: [],
-      user: {id: this.userId}
+      user: this.user,
     };
   }
   onSubmit(){
+    this.advertModel.user = {userId: this.user.userId};
+    this.advertModel.name = `${this.advertModel.carBrand} ${this.advertModel.carModel} ${this.advertModel.carRegistrationDate}`;
+    console.log(this.advertModel);
+
     if (this.advertId){
+      console.log('edit');
       this.advertService.putAdvertByid(this.advertModel).subscribe(() => {
         this.router.navigateByUrl(`/profile/${this.userId}`);
       });
     } else {
       console.log('new');
-      this.advertService.postAdvertByid(this.advertModel);
+      this.advertService.postAdvertByid(this.advertModel).subscribe(() => {
+        this.router.navigateByUrl(`/profile/${this.userId}`);
+      });
     }
-    console.log(this.advertModel);
   }
   toggleDisplayNewPictureButton(){
     if (this.advertModel.pictures.length === 4){
@@ -94,10 +103,10 @@ export class AdvertFormComponent implements OnInit {
     this.toggleDisplayNewPictureButton();
   }
   addOption(){
-    this.advertModel.carOptions.push({name: ''});
+    this.advertModel.carOptions.push({carOptionId: 0});
   }
   deletePicture(picture: Picture){
-    if (picture.id){
+    if (picture.pictureId){
       this.pictureService.deletePictureByid(picture).subscribe();
     } else {
       const index = this.advertModel.pictures.findIndex(element => {
@@ -108,7 +117,7 @@ export class AdvertFormComponent implements OnInit {
     this.toggleDisplayNewPictureButton();
   }
   deleteOption(option: Option){
-    if (option.id){
+    if (option.carOptionId){
       this.optionService.deleteOptionByid(option).subscribe();
     } else {
       const index = this.advertModel.carOptions.findIndex(element => {
