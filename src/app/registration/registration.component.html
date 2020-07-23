@@ -18,7 +18,7 @@
     </div>
     <div class="formSubContainer">
       <label for="birthDate">Date de naissance<span>*</span></label>
-      <input type="date" name="birthDate" [ngModel]='userModel.birthDate' (ngModelChange)='userModel.birthDate' #birthDate='ngModel' required>
+      <input type="date" name="birthDate" [ngModel]='userModel.birthDate' (ngModelChange)='userModel.birthDate=$event' #birthDate='ngModel' required>
       <div class="errorMessage" *ngIf="registrationForm.submitted && birthDate.errors?.required">Une date de naissance est requise</div>
     </div>
   </div>
@@ -97,7 +97,7 @@
     </div>
     <div class="formSubContainer">
       <label for="drivingLicenceDate">Date d'obtention<span>*</span></label>
-      <input type="text" name="drivingLicenceDate" [ngModel]='userModel.drivingLicenceDate' (ngModelChange)='userModel.drivingLicenceDate' #drivingLicenceDate='ngModel' required>
+      <input type="date" name="drivingLicenceDate" [ngModel]='userModel.drivingLicenceDate' (ngModelChange)='userModel.drivingLicenceDate=$event' #drivingLicenceDate='ngModel' required>
       <div class="errorMessage" *ngIf="registrationForm.submitted && drivingLicenceDate.errors?.required">Une date d'obtention est requise</div>
     </div>
   </div>
