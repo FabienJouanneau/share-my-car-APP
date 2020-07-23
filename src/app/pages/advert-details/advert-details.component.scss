@@ -1,0 +1,154 @@
+h1{
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 1em;
+}
+.price{
+  color: var(--secondary-color);
+}
+.element{
+  color: var(--primary-color);
+}
+.value{
+  color: var(--secondary-color);
+}
+table{
+  width: 60%;
+  margin: auto;
+  border-collapse:separate;
+  border-spacing: 1em;
+}
+td{
+  width: 33%;
+  text-align: center;
+}
+
+// Button
+.buttonContainer{
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  margin: 0 2em;
+  width: 15em;
+  height: 3em;
+  font-size: larger;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  background-color: white;
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  cursor: pointer;
+  &:hover{
+    background-color: var(--primary-color);
+    color: white;
+  }
+}
+.book{
+  background-color: var(--primary-color);
+  color: white;
+  cursor: pointer;
+  &:hover{
+    background-color: white;
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+  }
+}
+.goBack{
+  color: red;
+  background-color: white;
+  border: 1px solid red;
+  &:hover{
+    background-color: red;
+    color: white;
+    border: 1px solid white;
+  }
+}
+
+// Carousel
+.carrousel {
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+}
+.carrousel ul{
+  list-style-type: none;
+}
+.carrousel .slides {
+  width: 400%;
+  left: 0;
+  padding-left: 0;
+  overflow: hidden;
+  position: relative;
+  -webkit-transition: transform .5s;
+  -moz-transition: transform .5s;
+  -o-transition: transform .5s;
+  transition: transform .5s;
+}
+.carrousel .slides li {
+  width: 25%;
+  position: relative;
+  float: left;
+}
+.carrousel li img {
+  width: 50em;
+  height: 30em;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: auto;
+  vertical-align: middle;
+}
+.carrousel .slidesNavigation {
+  display: block;
+  list-style: none;
+  text-align: center;
+  bottom: 1em;
+  position: absolute;
+  width: 104px;
+  left: 50%;
+  margin-left: -52px;
+}
+.carrousel input {
+  display: none;
+}
+.carrousel .slidesNavigation label {
+  float: left;
+  margin: 6px;
+  display: block;
+  height: 10px;
+  width: 10px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  border: solid 2px white;
+  font-size: 0;
+}
+#radio-1:checked ~ .slides {
+  transform: translateX(0%);
+}
+#radio-2:checked ~ .slides {
+  transform: translateX(-25%);
+}
+#radio-3:checked ~ .slides {
+  transform: translateX(-50%);
+}
+#radio-4:checked ~ .slides {
+  transform: translateX(-75%);
+}
+
+
+.carrousel .slidesNavigation label:hover {
+   cursor: pointer;
+}
+.carrousel #radio-1:checked ~ .slidesNavigation label#dotForRadio-1,
+.carrousel #radio-2:checked ~ .slidesNavigation label#dotForRadio-2,
+.carrousel #radio-3:checked ~ .slidesNavigation label#dotForRadio-3,
+.carrousel #radio-4:checked ~ .slidesNavigation label#dotForRadio-4 {
+  border: solid 2px var(--primary-color);
+  background: var(--primary-color);
+}
