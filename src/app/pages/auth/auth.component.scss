@@ -1,0 +1,33 @@
+.container{
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  margin: 0 2em;
+  width: 15em;
+  height: 3em;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: larger;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover{
+    background-color: white;
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+  }
+}
+.loginButton{
+  background-color: var(--secondary-color);
+  color: white;
+  &:hover{
+    background-color: white;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+  }
+}

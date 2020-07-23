@@ -1,0 +1,8 @@
+<SMC-nav-bar></SMC-nav-bar>
+<div *ngIf="displayButton" class="container">
+  <button (click)="selectAuth('registration')">Je suis nouveau !</button>
+  <button class="loginButton" (click)="selectAuth('login')">Je me connecte</button>
+</div>
+<div *ngIf="authType==='login'"><SMC-login (hideForm)="toggleForm($event)"></SMC-login></div>
+<div *ngIf="authType==='registration'"><SMC-registration (hideForm)="toggleForm($event)"></SMC-registration></div>
+<SMC-footer></SMC-footer>
