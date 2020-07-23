@@ -13,6 +13,12 @@ label{
 label h1{
   color: var(--primary-color);
 }
+h3{
+  color: var(--primary-color);
+}
+.card:hover h3{
+  color: white;
+}
 input{
   width: 50%;
   border: 1px solid var(--primary-color);

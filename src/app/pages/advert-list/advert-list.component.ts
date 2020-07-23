@@ -20,16 +20,16 @@ export class AdvertListComponent implements OnInit {
     this.initializeAdverts();
   }
   initializeAdverts(){
-    // this.advertService.getAllAdverts().subscribe(data => {
-      // this.filterSearch = data.sort((a, b) => {
-      //   return a.carPricePerDay - b.carPricePerDay;
-      // });
-    //   this.adverts = this.filterSearch;
-    // });
-      this.filteredAdverts = this.advertService.getAllAdverts().sort((a, b) => {
+    this.advertService.getAllAdverts().subscribe(data => {
+      this.filteredAdverts = data.sort((a, b) => {
         return a.carPricePerDay - b.carPricePerDay;
       });
       this.adverts = this.filteredAdverts;
+    });
+      // this.filteredAdverts = this.advertService.getAllAdverts().sort((a, b) => {
+      //   return a.carPricePerDay - b.carPricePerDay;
+      // });
+      // this.adverts = this.filteredAdverts;
   }
   filterUsers(name){
     this.filteredAdverts = this.adverts;

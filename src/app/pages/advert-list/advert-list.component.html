@@ -4,11 +4,12 @@
   <input type="search" name="advertSearch" id="advertSearch" placeholder="Renault Captur 2005" [ngModel]="filterSearch" (ngModelChange)="filterUsers($event)">
 </form>
 
-<div class="card" routerLink="/adverts/{{advert.id}}" *ngFor="let advert of filteredAdverts">
-  <img src="{{advert.pictures[0].url}}" alt="">
+<div class="card" routerLink="/adverts/{{advert.advertId}}" *ngFor="let advert of filteredAdverts">
+  <img *ngIf="advert.pictures[0]" src="{{advert.pictures[0].url}}" alt="">
+  <img *ngIf="!advert.pictures[0]" src="https://www.coloriages.info/images/2016/12/16/voitureautomobiledessin.jpg" alt="">
   <div class="cardSubcontainer">
     <h3>{{advert.carBrand}} {{advert.carModel}} {{advert.carRegistrationDate | date: "yyyy"}}</h3>
-    <div>{{advert.carKilometers}} kilomètres</div>
+    <div>{{advert.carKilometers | number}} kilomètres</div>
     <h1>{{advert.carPricePerDay}} € / jour</h1>
   </div>
 </div>
