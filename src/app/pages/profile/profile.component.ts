@@ -3,6 +3,7 @@ import { UserService } from '../../shared/services/user/user.service';
 import { AdvertService } from '../../shared/services/advert/advert.service';
 import { User } from '../../shared/classes/user';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { Advert } from '../../shared/classes/advert';
 
 @Component({
   selector: 'SMC-profile',
@@ -12,6 +13,8 @@ import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 export class ProfileComponent implements OnInit {
   user: User;
   userId: number;
+  userAdverts: Advert[] = [];
+  displayReservation = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,9 +29,24 @@ export class ProfileComponent implements OnInit {
     });
   }
   initializeUser(id: number){
-    this.user = this.userService.getUserById(id);
-    // this.userService.getUserById(id).subscribe(data => {
-    //   this.user = data;
-    // });
+    this.userService.getUserById(id).subscribe(data => {
+      this.user = data;
+      console.log(this.user.bookings);
+
+      this.user.bookings.sort((a, b) => {
+        return +new Date(b.endingDate) - +new Date(a.endingDate);
+      });
+      this.user.bookings.forEach(booking => {
+        this.advertService.getAdvertByid(+booking.advert).subscribe(element => {
+          booking.advert = element;
+        });
+        this.userService.getUserById(+booking.user).subscribe(element => {
+          booking.user = element;
+        });
+      });
+    });
+  }
+  toggleDisplayReservation(){
+    this.displayReservation = ! this.displayReservation;
   }
 }
