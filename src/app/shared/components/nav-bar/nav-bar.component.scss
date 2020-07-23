@@ -13,10 +13,30 @@ img{
     border: none;
   }
 }
+.subContainer{
+  margin: 1em 1em 1em 0em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .icon{
   width: 4em;
-  margin-right: 1em;
 }
 hr{
   border-color: var(--primary-color);
+}
+.deconnect{
+  margin: auto;
+  text-align: center;
+  cursor: pointer;
+  color: var(--primary-color);
+  background: linear-gradient(var(--primary-color),var(--primary-color)) center bottom;
+  background-size: 0% 2px;
+  padding-bottom: 1px;
+  &:hover{
+    background-size: 100% 2px;
+    background-repeat:no-repeat;
+    transition: background 1.5s;
+  }
 }
