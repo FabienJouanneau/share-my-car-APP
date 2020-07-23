@@ -1,0 +1,17 @@
+<form (ngSubmit)="bookingForm.valid && onSubmit()" #bookingForm="ngForm">
+  <div class="formSubcontainer">
+    <label for="startingDate">Date de début</label>
+    <input type="date" name="startingDate" [ngModel]="reservation.startingDate | date: 'yyyy-MM-dd'" (ngModelChange)="reservation.startingDate=$event; calculatePrice()" #startingDate="ngModel" required>
+  </div>
+  <div class="formSubcontainer">
+    <label for="endingDate">Date de fin</label>
+    <input type="date" name="endingDate" [ngModel]="reservation.endingDate | date: 'yyyy-MM-dd'" (ngModelChange)="reservation.endingDate=$event; calculatePrice()" #endingDate="ngModel" required>
+  </div>
+  <div>
+    <div>{{daysCounter}} jour(s)</div>
+    <div>{{reservation.amount}}€</div>
+  </div>
+  <div class="buttonContainer">
+    <button type="submit">Valider</button>
+  </div>
+</form>
