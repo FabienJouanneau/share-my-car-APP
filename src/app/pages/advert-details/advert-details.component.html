@@ -1,76 +1,88 @@
-<SMC-nav-bar></SMC-nav-bar>
-<h1>{{advert.carBrand}} {{advert.carModel}} {{advert.carRegistrationDate | date: 'yyyy'}}</h1>
-<div class="carrousel">
-  <input *ngIf="advert.pictures[0]" type="radio" name="slides" id="radio-1" checked>
-  <input *ngIf="advert.pictures[1]" type="radio" name="slides" id="radio-2">
-  <input *ngIf="advert.pictures[2]" type="radio" name="slides" id="radio-3">
-  <input *ngIf="advert.pictures[3]" type="radio" name="slides" id="radio-4">
-  <ul class="slides">
-    <li class="slide" *ngFor="let picture of advert.pictures">
-        <img src="{{picture.url}}">
-    </li>
-  </ul>
-  <div class="slidesNavigation">
-    <label *ngIf="advert.pictures[0]" for="radio-1" id="dotForRadio-1"></label>
-    <label *ngIf="advert.pictures[1]" for="radio-2" id="dotForRadio-2"></label>
-    <label *ngIf="advert.pictures[2]" for="radio-3" id="dotForRadio-3"></label>
-    <label *ngIf="advert.pictures[3]" for="radio-4" id="dotForRadio-4"></label>
+<div *ngIf="advert">
+  <SMC-nav-bar></SMC-nav-bar>
+  <h1>{{advert.carBrand}} {{advert.carModel}} {{advert.carRegistrationDate | date: 'yyyy'}}</h1>
+  <div class="carrousel">
+    <input type="radio" name="slides" id="radio-1" checked>
+    <input *ngIf="advert.pictures[1]" type="radio" name="slides" id="radio-2">
+    <input *ngIf="advert.pictures[2]" type="radio" name="slides" id="radio-3">
+    <input *ngIf="advert.pictures[3]" type="radio" name="slides" id="radio-4">
+    <ul class="slides">
+      <li  *ngIf="!advert.pictures[0]" class="slide">
+        <img src="https://www.coloriages.info/images/2016/12/16/voitureautomobiledessin.jpg">
+      </li>
+      <li class="slide" *ngFor="let picture of advert.pictures">
+          <img src="{{picture.url}}">
+      </li>
+    </ul>
+    <div class="slidesNavigation">
+      <label for="radio-1" id="dotForRadio-1"></label>
+      <label *ngIf="advert.pictures[1]" for="radio-2" id="dotForRadio-2"></label>
+      <label *ngIf="advert.pictures[2]" for="radio-3" id="dotForRadio-3"></label>
+      <label *ngIf="advert.pictures[3]" for="radio-4" id="dotForRadio-4"></label>
+    </div>
   </div>
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <div class="element">Marque</div>
+          <div class="value">{{advert.carBrand}}</div>
+        </td>
+        <td>
+          <div class="element">Modèle</div>
+          <div class="value">{{advert.carModel}}</div>
+        </td>
+        <td>
+          <div class="element">Date d'immatriculation</div>
+          <div class="value">{{advert.carRegistrationDate | date: 'shortDate':'fr'}}</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="element">Kilométrage</div>
+          <div class="value">{{advert.carKilometers | number}}</div>
+        </td>
+        <td>
+          <div class="element">Energie moteur</div>
+          <div class="value">{{advert.carEnergy}}</div>
+        </td>
+        <td>
+          <div class="element">Motorisation</div>
+          <div class="value">{{advert.carMotor}}</div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <h1 class="price">{{advert.carPricePerDay}}€ / jour</h1>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <div class="buttonContainer">
+            <button (click)="toggleDisplayOptions()">Options</button>
+          </div>
+        </td>
+      </tr>
+      <tr *ngIf="dislpayOptions && optionsLength.length===0">
+        <td class="element" colspan="3">Aucune option renseignée</td>
+      </tr>
+      <tr *ngFor="let count of optionsLength">
+        <td class="element" *ngIf="dislpayOptions && advert.carOptions[count*3-3]">{{advert.carOptions[count*3-3].name}}</td>
+        <td class="element" *ngIf="dislpayOptions && advert.carOptions[count*3-2]">{{advert.carOptions[count*3-2].name}}</td>
+        <td class="element" *ngIf="dislpayOptions && advert.carOptions[count*3-1]">{{advert.carOptions[count*3-1].name}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="buttonContainer">
+    <button (click)="toggleDisplayReservation()" class="book">Réserver</button>
+    <button routerLink="/find-my-car" class="goBack">Retour</button>
+  </div>
+  <div *ngIf="displayReservation">
+    <SMC-booking
+      [advert]="advert"
+      [user]="user"
+      (postReservation)="postReservation($event);">
+    </SMC-booking>
+  </div>
+  <SMC-footer></SMC-footer>
 </div>
-<table>
-  <tbody>
-    <tr>
-      <td>
-        <div class="element">Marque</div>
-        <div class="value">{{advert.carBrand}}</div>
-      </td>
-      <td>
-        <div class="element">Modèle</div>
-        <div class="value">{{advert.carModel}}</div>
-      </td>
-      <td>
-        <div class="element">Date d'immatriculation</div>
-        <div class="value">{{advert.carRegistrationDate | date: 'shortDate':'fr'}}</div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="element">Kilométrage</div>
-        <div class="value">{{advert.carKilometers | number}}</div>
-      </td>
-      <td>
-        <div class="element">Energie moteur</div>
-        <div class="value">{{advert.carEnergy}}</div>
-      </td>
-      <td>
-        <div class="element">Motorisation</div>
-        <div class="value">{{advert.carMotor}}</div>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="3">
-        <h1 class="price">{{advert.carPricePerDay}}€ / jour</h1>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="3">
-        <div class="buttonContainer">
-          <button (click)="toggleDisplayOptions()">Options</button>
-        </div>
-      </td>
-    </tr>
-    <tr *ngIf="dislpayOptions && optionsLength.length===0">
-      <td class="element" colspan="3">Aucune option renseignée</td>
-    </tr>
-    <tr *ngFor="let count of optionsLength">
-      <td class="element" *ngIf="dislpayOptions && advert.carOptions[count*3-3]">{{advert.carOptions[count*3-3].name}}</td>
-      <td class="element" *ngIf="dislpayOptions && advert.carOptions[count*3-2]">{{advert.carOptions[count*3-2].name}}</td>
-      <td class="element" *ngIf="dislpayOptions && advert.carOptions[count*3-1]">{{advert.carOptions[count*3-1].name}}</td>
-    </tr>
-  </tbody>
-</table>
-<div class="buttonContainer">
-  <button class="book">Réserver</button>
-  <button routerLink="/find-my-car" class="goBack">Retour</button>
-</div>
-<SMC-footer></SMC-footer>
