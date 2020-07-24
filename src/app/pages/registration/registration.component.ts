@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { User } from '../shared/classes/user';
+import { User } from '../../shared/classes/user';
 import { Router } from '@angular/router';
-import { UserService } from '../shared/services/user/user.service';
-import { AuthService } from '../shared/services/auth/auth.service';
+import { UserService } from '../../shared/services/user/user.service';
+import { AuthService } from '../../shared/services/auth/auth.service';
 
 @Component({
   selector: 'SMC-registration',
@@ -14,7 +14,6 @@ export class RegistrationComponent implements OnInit {
   @Output() hideForm = new EventEmitter();
 
   constructor(
-    private router: Router,
     private userService: UserService,
     private authService: AuthService,
   ) { }

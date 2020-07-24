@@ -14,7 +14,7 @@ import { NavBarComponent } from './shared/components/nav-bar/nav-bar.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { LoginComponent } from './pages/login/login.component';
-import { RegistrationComponent } from './registration/registration.component';
+import { RegistrationComponent } from './pages/registration/registration.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { AdvertFormComponent } from './pages/advert-form/advert-form.component';
 import { AdvertDetailsComponent } from './pages/advert-details/advert-details.component';
