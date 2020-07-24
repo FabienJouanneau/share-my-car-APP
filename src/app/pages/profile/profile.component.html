@@ -22,8 +22,8 @@
   </div>
 </div>
 <h2>Mes annonces</h2>
-<div class="card" *ngFor="let advert of user.adverts" routerLink="/profile/{{userId}}/my-advert/{{advert.advertId}}">
-  <div class="cardElement">
+<div class="card" *ngFor="let advert of user.adverts">
+  <div class="cardElement" routerLink="/profile/{{userId}}/my-advert/{{advert.advertId}}">
     <img *ngIf="advert.pictures[0]" src="{{advert.pictures[0].url}}" alt="">
     <img *ngIf="!advert.pictures[0]" src="https://www.coloriages.info/images/2016/12/16/voitureautomobiledessin.jpg" alt="">
     <div class="cardSubcontainer">
