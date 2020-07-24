@@ -1,6 +1,7 @@
 import { User } from './user';
 import { Picture } from './picture';
 import { Option } from './option';
+import { Booking } from './booking';
 
 export class Advert{
   public advertId?: number;
@@ -14,6 +15,7 @@ export class Advert{
   public carMotor: 'Automatique' | 'Manuel';
   public pictures?: Picture[];
   public carOptions?: Option[];
+  public bookings?: Booking[];
   public user?: User | {userId?: number};
 
   constructor(
@@ -26,6 +28,7 @@ export class Advert{
     carEnergy: 'Essence' | 'Gasoil' | 'Electrique' | 'GPL',
     carMotor: 'Automatique' | 'Manuel',
     pictures?: Picture[],
+    bookings?: Booking[],
     carOptions?: Option[],
     user?: User | {userId?: number},
     advertId?: number,
@@ -40,6 +43,7 @@ export class Advert{
     this.carEnergy = carEnergy;
     this.carMotor = carMotor;
     this.pictures = pictures;
+    this.bookings = bookings;
     this.carOptions = carOptions;
     this.user = user;
   }
