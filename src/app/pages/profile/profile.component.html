@@ -6,24 +6,34 @@
 <h2 class="reservation" (click)="toggleDisplayReservation()">Mes réservations</h2>
 <div *ngIf="displayReservation">
   <div class="card" *ngFor="let booking of user.bookings; let i = index">
-    <img *ngIf="booking.advert.pictures[0]" src="{{booking.advert.pictures[0].url}}" alt="">
-    <img *ngIf="!booking.advert.pictures[0]" src="https://www.coloriages.info/images/2016/12/16/voitureautomobiledessin.jpg" alt="">
-    <div class="cardSubcontainer">
-      <h3>{{booking.advert.carBrand}} {{booking.advert.carModel}} {{booking.advert.carRegistrationDate | date: "yyyy"}}</h3>
-      <div>Du {{booking.startingDate | date: 'shortDate':'fr'}} au {{booking.endingDate | date: 'shortDate':'fr'}}</div>
-      <div>{{booking.advert.user.firstName}} {{booking.advert.user.lastName.toUpperCase()}}</div>
-      <h1>{{booking.amount}} €</h1>
+    <div class="cardElement">
+      <img *ngIf="booking.advert.pictures[0]" src="{{booking.advert.pictures[0].url}}" alt="">
+      <img *ngIf="!booking.advert.pictures[0]" src="https://www.coloriages.info/images/2016/12/16/voitureautomobiledessin.jpg" alt="">
+      <div class="cardSubcontainer">
+        <h3>{{booking.advert.carBrand}} {{booking.advert.carModel}} {{booking.advert.carRegistrationDate | date: "yyyy"}}</h3>
+        <div>Du {{booking.startingDate | date: 'shortDate':'fr'}} au {{booking.endingDate | date: 'shortDate':'fr'}}</div>
+        <div>{{booking.advert.user.firstName}} {{booking.advert.user.lastName.toUpperCase()}}</div>
+        <h1>{{booking.amount}} €</h1>
+      </div>
+    </div>
+    <div class="buttonContainer deleteButtonContainer">
+      <button class="delete" (click)="deleteBooking(booking.bookingId)">Supprimer</button>
     </div>
   </div>
 </div>
 <h2>Mes annonces</h2>
 <div class="card" *ngFor="let advert of user.adverts" routerLink="/profile/{{userId}}/my-advert/{{advert.advertId}}">
-  <img *ngIf="advert.pictures[0]" src="{{advert.pictures[0].url}}" alt="">
-  <img *ngIf="!advert.pictures[0]" src="https://www.coloriages.info/images/2016/12/16/voitureautomobiledessin.jpg" alt="">
-  <div class="cardSubcontainer">
-    <h3>{{advert.carBrand}} {{advert.carModel}} {{advert.carRegistrationDate | date: "yyyy"}}</h3>
-    <div>{{advert.carKilometers | number}} kilomètres</div>
-    <h1>{{advert.carPricePerDay}} € / jour</h1>
+  <div class="cardElement">
+    <img *ngIf="advert.pictures[0]" src="{{advert.pictures[0].url}}" alt="">
+    <img *ngIf="!advert.pictures[0]" src="https://www.coloriages.info/images/2016/12/16/voitureautomobiledessin.jpg" alt="">
+    <div class="cardSubcontainer">
+      <h3>{{advert.carBrand}} {{advert.carModel}} {{advert.carRegistrationDate | date: "yyyy"}}</h3>
+      <div>{{advert.carKilometers | number}} kilomètres</div>
+      <h1>{{advert.carPricePerDay}} € / jour</h1>
+    </div>
+  </div>
+  <div class="buttonContainer deleteButtonContainer">
+    <button class="delete" (click)="deleteAdvert(advert.advertId)">Supprimer</button>
   </div>
 </div>
 <div class="buttonContainer">

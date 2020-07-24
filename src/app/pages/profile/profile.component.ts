@@ -4,6 +4,7 @@ import { AdvertService } from '../../shared/services/advert/advert.service';
 import { User } from '../../shared/classes/user';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { Advert } from '../../shared/classes/advert';
+import { BookingService } from '../../shared/services/booking/booking.service';
 
 @Component({
   selector: 'SMC-profile',
@@ -20,6 +21,7 @@ export class ProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private advertService: AdvertService,
+    private bookingService: BookingService,
   ) { }
 
   ngOnInit(): void {
@@ -48,5 +50,15 @@ export class ProfileComponent implements OnInit {
   }
   toggleDisplayReservation(){
     this.displayReservation = ! this.displayReservation;
+  }
+  deleteBooking(id){
+    this.bookingService.deleteBookingById(id).subscribe(() => {
+      this.initializeUser(this.userId);
+    });
+  }
+  deleteAdvert(id){
+    this.advertService.deleteAdvertByid(id).subscribe(() => {
+      this.initializeUser(this.userId);
+    });
   }
 }

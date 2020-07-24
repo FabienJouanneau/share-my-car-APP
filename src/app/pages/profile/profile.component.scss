@@ -15,10 +15,11 @@ h3{
   color: white;
 }
 
-.card{
+.cardElement{
   width: 40%;
   height: 10em;
   margin: 2em auto;
+  margin-bottom: 0px;
   background-color: whitesmoke;
   color: var(--secondary-color);
   display: flex;
@@ -69,4 +70,19 @@ button {
 }
 .reservation{
   cursor: pointer;
+}
+
+.deleteButtonContainer{
+  margin-bottom: 2em;
+}
+.delete{
+  margin: 0px auto;
+  width: 5em;
+  background-color: white;
+  color: var(--primary-color);
+  &:hover{
+    border: 1px solid white;
+    background-color: red;
+    color: white;
+  }
 }
