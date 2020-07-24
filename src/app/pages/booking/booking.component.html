@@ -1,17 +1,18 @@
-<form (ngSubmit)="bookingForm.valid && onSubmit()" #bookingForm="ngForm">
+<!-- <form (ngSubmit)="bookingForm.valid && onSubmit()" #bookingForm="ngForm"> -->
+<form #bookingForm="ngForm">
   <div class="formSubcontainer">
-    <label for="startingDate">Date de début</label>
+    <label for="startingDate">Date de début<span>*</span></label>
     <input type="date" name="startingDate" [ngModel]="reservation.startingDate | date: 'yyyy-MM-dd'" (ngModelChange)="reservation.startingDate=$event; calculatePrice()" #startingDate="ngModel" required>
   </div>
   <div class="formSubcontainer">
-    <label for="endingDate">Date de fin</label>
+    <label for="endingDate">Date de fin<span>*</span></label>
     <input type="date" name="endingDate" [ngModel]="reservation.endingDate | date: 'yyyy-MM-dd'" (ngModelChange)="reservation.endingDate=$event; calculatePrice()" #endingDate="ngModel" required>
   </div>
-  <div>
-    <div>{{daysCounter}} jour(s)</div>
-    <div>{{reservation.amount}}€</div>
+  <div class="container">
+    <h2>{{daysCounter}} jour(s)</h2>
+    <h2>{{reservation.amount}}€</h2>
   </div>
   <div class="buttonContainer">
-    <button type="submit">Valider</button>
+    <button routerLink="/profile/{{user.userId}}" (click)="onSubmit()" type="button">Valider</button>
   </div>
 </form>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Booking } from '../../shared/classes/booking';
 import { Advert } from '../../shared/classes/advert';
 import { BookingService } from '../../shared/services/booking/booking.service';
@@ -15,9 +15,9 @@ export class BookingComponent implements OnInit {
   dateNow = new Date(Date.now());
   @Input() advert: Advert;
   @Input() user: User;
-  @Output() postReservation = new EventEmitter();
 
   constructor(
+    private bookingService: BookingService
   ) { }
 
   ngOnInit(): void {
@@ -37,7 +37,6 @@ export class BookingComponent implements OnInit {
     }
   }
   onSubmit(){
-    this.postReservation.emit(this.reservation);
-    console.log(this.reservation);
+    this.bookingService.postBooking(this.reservation).subscribe();
   }
 }
