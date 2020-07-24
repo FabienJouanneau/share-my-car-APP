@@ -39,9 +39,9 @@ export class ProfileComponent implements OnInit {
       this.user.bookings.forEach(booking => {
         this.advertService.getAdvertByid(+booking.advert).subscribe(element => {
           booking.advert = element;
-        });
-        this.userService.getUserById(+booking.user).subscribe(element => {
-          booking.user = element;
+          this.userService.getUserById(+element.user).subscribe(user => {
+            element.user = user;
+          });
         });
       });
     });

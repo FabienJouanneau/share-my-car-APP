@@ -10,7 +10,7 @@
     <div class="cardSubcontainer">
       <h3>{{booking.advert.carBrand}} {{booking.advert.carModel}} {{booking.advert.carRegistrationDate | date: "yyyy"}}</h3>
       <div>Du {{booking.startingDate | date: 'shortDate':'fr'}} au {{booking.endingDate | date: 'shortDate':'fr'}}</div>
-      <div>{{booking.user.firstName}} {{booking.user.lastName.toUpperCase()}}</div>
+      <div>{{booking.advert.user.firstName}} {{booking.advert.user.lastName.toUpperCase()}}</div>
       <h1>{{booking.amount}} €</h1>
     </div>
   </div>
