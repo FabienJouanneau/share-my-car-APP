@@ -71,11 +71,13 @@ export class AdvertFormComponent implements OnInit {
       carMotor: null,
       pictures: [],
       carOptions: [],
+      bookings: [],
       user: this.user,
     };
   }
   onSubmit(){
     this.advertModel.user = {userId: this.user.userId};
+    this.advertModel.bookings = [];
     this.advertModel.name = `${this.advertModel.carBrand} ${this.advertModel.carModel} ${this.advertModel.carRegistrationDate}`;
     console.log(this.advertModel);
 
