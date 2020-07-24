@@ -6,7 +6,8 @@
 <h2 class="reservation" (click)="toggleDisplayReservation()">Mes réservations</h2>
 <div *ngIf="displayReservation">
   <div class="card" *ngFor="let booking of user.bookings; let i = index">
-    <img *ngIf="booking.advert.pictures" src="{{booking.advert.pictures[0].url}}" alt="">
+    <img *ngIf="booking.advert.pictures[0]" src="{{booking.advert.pictures[0].url}}" alt="">
+    <img *ngIf="!booking.advert.pictures[0]" src="https://www.coloriages.info/images/2016/12/16/voitureautomobiledessin.jpg" alt="">
     <div class="cardSubcontainer">
       <h3>{{booking.advert.carBrand}} {{booking.advert.carModel}} {{booking.advert.carRegistrationDate | date: "yyyy"}}</h3>
       <div>Du {{booking.startingDate | date: 'shortDate':'fr'}} au {{booking.endingDate | date: 'shortDate':'fr'}}</div>
